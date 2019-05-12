@@ -1,0 +1,28 @@
+<script type="text/javascript">
+    RED.nodes.registerType('rfid',{
+        category: 'input',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:""},
+            sensor_update_rate: {value:""},
+            message_update_rate: {value:""}
+        },
+        inputs:0,
+        outputs:1,
+        icon: "phidgets_logo.png",
+        label: function() {
+            return this.name||"rfid";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="rfid">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="rfid">
+    <p>Get Data from the Phidgets RFID sensor</p>
+</script>
