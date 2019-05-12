@@ -1,2 +1,2 @@
-# node-red-phidgets
+# node-red-contrib-phidgets
 Node wrappers for Phidgets devices.
