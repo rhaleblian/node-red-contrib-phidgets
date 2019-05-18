@@ -14,20 +14,26 @@ Some nodes are still just stubs.
 
 ### Prequisites
 
-* @rhaleblian is using macOS
-* [Phidget22 JavaScript Library](https://www.phidgets.com/docs/Language_-_JavaScript#Libraries)
-* [Node-RED](https://nodered.org)
+macOS and Raspbian have worked.
 
     npm install phidget22
     npm install node-red
-    
+
+
+
 ### Running
 
     make install
     make test
 
-will install to your .node-red directory and start the server.
+will install to your `~/.node-red` directory and start the server.
 
 ### Guidelines
 
-[JavaScript Standard Style](https://github.com/standard/standard#install) for style.
+[JavaScript Standard Style](https://github.com/standard/standard#install)
+
+
+## Bibliography
+
+1. [Phidget22 JavaScript Library](https://www.phidgets.com/docs/Language_-_JavaScript#Libraries)
+2. [Node-RED](https://nodered.org)
