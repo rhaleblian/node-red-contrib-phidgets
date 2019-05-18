@@ -4,44 +4,50 @@ module.exports = function(RED) {
         var node = this;
         this.status({fill:"gray",shape:"dot",text:"unknown"});
 
+        function log(ch, message) {
+            console.log('[' + ch + '] ' + message);
+        }
+
         function sendMessage(message) {
             var msg = {'payload': message };
             node.send(msg);
         }
 
         function getProtocolName(protocol) {
-            var protocolStr;
+            // Convert the protocol enum to a string.
+            var name;
             switch (protocol) {
                 case phidget22.RFIDProtocol.EM4100:
-                    protocolStr = 'EM4100';
+                    name = 'EM4100';
                     break;
                 case phidget22.RFIDProtocol.ISO11785_FDX_B:
-                    protocolStr = 'ISO11785_FDX_B';
+                    name = 'ISO11785_FDX_B';
                     break;
                 case phidget22.RFIDProtocol.PHIDGET_TAG:
-                    protocolStr = 'PHIDGET_TAG';
+                    name = 'PHIDGET_TAG';
                     break;
             }
-            return protocolStr;
+            return name;
         }
 
         function go() {
-            console.log('connected to server');
             var ch = new phidget22.RFID();
-        
+
             ch.onAttach = function (ch) {
-                console.log(ch + ' attached');
+                log(ch, 'is attached');
+                log(ch,'name: ' + ch.getDeviceName());
+                log(ch,'serial: ' + ch.getDeviceSerialNumber());
                 node.status({fill:"green",shape:"dot",text:"attached"});
             };
         
             ch.onDetach = function (ch) {
-                console.log(ch + ' detached');
+                log(ch, 'is detached');
                 node.status({fill:"red",shape:"dot",text:"detached"});
             };
         
             ch.onTag = function (tag, protocol) {
                 var protocolStr = getProtocolName(protocol);
-                console.log('Tag: ' + tag + "\tProtocol: " + protocolStr)
+                log(ch, 'Tag: ' + tag + "\tProtocol: " + protocolStr)
                 var payload = {
                     'event': 'tag',
                     'protocol': protocolStr,
@@ -51,7 +57,7 @@ module.exports = function(RED) {
         
             ch.onTagLost = function (tag, protocol) {
                 var protocolStr = getProtocolName(protocol);        
-                console.log('TagLost: ' + tag + "\tProtocol: " + protocolStr)
+                log(ch, 'TagLost: ' + tag + "\tProtocol: " + protocolStr)
                 var payload = {
                     'event': 'taglost',
                     'protocol': protocolStr,
@@ -60,9 +66,9 @@ module.exports = function(RED) {
             }
         
             ch.open().then(function (ch) {
-                console.log('channel open');
+                log(ch,'channel is open');
             }).catch(function (err) {
-                console.log('failed to open the channel:' + err);
+                log(ch,'failed to open the channel:' + err);
             });
         }
 
@@ -73,7 +79,7 @@ module.exports = function(RED) {
         conn.connect()
 		.then(go)
 		.catch(function (err) {
-			console.error('Error running example:', err.message);
+			console.error(node + ': could not go(). ',err.message);
 			process.exit(1);
 		});
     }
