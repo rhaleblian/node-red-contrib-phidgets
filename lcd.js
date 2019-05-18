@@ -41,9 +41,9 @@ module.exports = function (RED) {
       node.on('input', function (msg) {
         log(ch, 'input ' + msg.payload)
         if (msg.payload['event'] === 'tag') {
-          ch.writeText(phidget22.LCDFont.DIMENSIONS_5X8, 0, 0, msg.payload['id'])
+          ch.writeText(font, 0, 0, msg.payload['id'])
         } else if (msg.payload['event'] === 'taglost') {
-          ch.writeText(phidget22.LCDFont.DIMENSIONS_5X8, 0, 0, '               ')
+          ch.writeText(font, 0, 0, '               ')
         }
         ch.flush()
       })
