@@ -1,5 +1,5 @@
 module.exports = function (RED) {
-  function PhidgetsLCDNode (config) {
+  function LCDNode (config) {
     RED.nodes.createNode(this, config)
     var node = this
     this.status({ fill: 'gray', shape: 'dot', text: 'unknown' })
@@ -60,5 +60,5 @@ module.exports = function (RED) {
         process.exit(1)
       })
   }
-  RED.nodes.registerType('lcd', PhidgetsLCDNode)
+  RED.nodes.registerType('lcd', LCDNode)
 }

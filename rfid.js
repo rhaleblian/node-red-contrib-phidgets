@@ -1,5 +1,5 @@
 module.exports = function (RED) {
-  function PhidgetsRFIDNode (config) {
+  function RFIDNode (config) {
     RED.nodes.createNode(this, config)
     var node = this
     this.status({ fill: 'gray', shape: 'dot', text: 'unknown' })
@@ -83,5 +83,5 @@ module.exports = function (RED) {
         process.exit(1)
       })
   }
-  RED.nodes.registerType('rfid', PhidgetsRFIDNode)
+  RED.nodes.registerType('rfid', RFIDNode)
 }
