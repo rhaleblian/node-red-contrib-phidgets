@@ -15,9 +15,12 @@ Some nodes are still just stubs.
 ### Prequisites
 
 * @rhaleblian is using macOS
-* [Phidget 22 JavaScript API](https://www.phidgets.com/docs/Language_-_JavaScript#Libraries)
-* [Node RED](https://nodered.org)
+* [Phidget22 JavaScript Library](https://www.phidgets.com/docs/Language_-_JavaScript#Libraries)
+* [Node-RED](https://nodered.org)
 
+    npm install phidget22
+    npm install node-red
+    
 ### Running
 
     make install
