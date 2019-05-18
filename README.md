@@ -12,6 +12,14 @@ Some nodes are still just stubs.
 
 ## Developer Installation
 
+### Prequisites
+
+* @rhaleblian is using macOS
+* [Phidget 22 JavaScript API](https://www.phidgets.com/docs/Language_-_JavaScript#Libraries)
+* [Node RED](https://nodered.org)
+
+### Running
+
     make install
     make test
 
