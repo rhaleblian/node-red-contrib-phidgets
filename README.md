@@ -10,4 +10,13 @@ Things that have tested positive:
 
 Some nodes are still just stubs.
 
-node-red-phidget adopts [StandardJS](https://github.com/standard/standard#install) for style.
+## Developer Installation
+
+  make install
+  make test
+
+will install to your .node-red directory and start the server.
+
+## Development Standards
+
+[StandardJS](https://github.com/standard/standard#install) for style.
