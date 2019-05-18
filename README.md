@@ -12,8 +12,8 @@ Some nodes are still just stubs.
 
 ## Developer Installation
 
-  make install
-  make test
+    make install
+    make test
 
 will install to your .node-red directory and start the server.
 
