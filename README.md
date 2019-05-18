@@ -10,7 +10,7 @@ Things that have tested positive:
 
 Some nodes are still just stubs.
 
-## Developer Installation
+## Development
 
 ### Prequisites
 
@@ -28,6 +28,6 @@ Some nodes are still just stubs.
 
 will install to your .node-red directory and start the server.
 
-## Development Standards
+### Guidelines
 
-[StandardJS](https://github.com/standard/standard#install) for style.
+[JavaScript Standard Style](https://github.com/standard/standard#install) for style.
