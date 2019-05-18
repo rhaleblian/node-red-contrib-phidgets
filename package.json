@@ -1,0 +1,16 @@
+{
+  "dependencies": {},
+  "description": "Nodes for Phidgets devices.",
+  "devDependencies": {},
+  "keywords": [],
+  "name": "node-red-phidget",
+  "node-red": {
+    "nodes": {
+      "rfid": "rfid.js",
+      "lcd": "lcd.js"
+    }
+  },
+  "optionalDependencies": {},
+  "readme": "http://phidgets.com",
+  "version": "0.0.1"
+}
