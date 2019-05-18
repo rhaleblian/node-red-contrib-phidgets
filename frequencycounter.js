@@ -2,31 +2,38 @@ module.exports = function(RED) {
     function FrequencyCounterNode(config) {
         RED.nodes.createNode(this,config);
         var node = this;
-        this.status({fill:"red",shape:"dot",text:"not started"});
+        this.status({fill:"gray",shape:"dot",text:"unknown"});
 
-        function sendMessage() {
+        function log(ch,message) {
+            console.log('[' + ch + '] ' + message);
+        }
 
+        function sendMessage(message) {
+            var msg = {'payload': message };
+            node.send(msg);
         }
 
         function go() {
-
-            console.log('connected to server');
             var ch = new phidget22.FrequencyCounter();
-        
+
             ch.onAttach = function (ch) {
-                console.log(ch + ' attached');
+                log(ch,'is attached');
+                log(ch,'name: ' + ch.getDeviceName());
+                log(ch,'serial: ' + ch.getDeviceSerialNumber());
                 node.status({fill:"green",shape:"dot",text:"attached"});
             };
         
             ch.onDetach = function (ch) {
-                console.log(ch + ' detached');
+                log(ch,'is detached');
                 node.status({fill:"red",shape:"dot",text:"detached"});
             };
         
             ch.open().then(function (ch) {
-                console.log('channel open');
+                log(ch,'channel is open');
+                ch.initialize();
+
             }).catch(function (err) {
-                console.log('failed to open the channel:' + err);
+                console.error(node + ': failed to open the channel. ' + err);
             });
         }
 
@@ -37,7 +44,7 @@ module.exports = function(RED) {
         conn.connect()
 		.then(go)
 		.catch(function (err) {
-			console.error('Error running frequency counter:', err.message);
+			console.error(node + ': could not go(). ',err.message);
 			process.exit(1);
 		});
     }

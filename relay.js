@@ -4,30 +4,30 @@ module.exports = function(RED) {
         var node = this;
         this.status({fill:"gray",shape:"dot",text:"unknown"});
 
+        function log(ch,message) {
+            console.log('[' + ch + '] ' + message);
+        }
+
         function go() {
-            console.log('connected to server');
-            var ch = new phidget22.Relay();
-        
+            var ch = new phidget22.Relay();        
+
             ch.onAttach = function (ch) {
                 console.log(ch + ' attached');
+                log(ch,'name: ' + ch.getDeviceName());
+                log(ch,'serial: ' + ch.getDeviceSerialNumber());
                 node.status({fill:"green",shape:"dot",text:"attached"});
             };
 
             ch.onDetach = function (ch) {
-                console.log(ch + ' detached');
+                log(ch,'is detached');
                 node.status({fill:"red",shape:"dot",text:"detached"});
             };
         
             ch.open().then(function (ch) {
-                console.log('Relay channel open');
+                log(ch,'channel is open');
                 ch.initialize();
-
-                //console.log('name: ' + ch.getDeviceName());
-                //console.log('serial: ' + ch.getDeviceSerialNumber());
-                //console.log(ch.getBacklight());
-
             }).catch(function (err) {
-                console.log('Relay failed to open the channel:' + err);
+                log(ch,'failed to open the channel:' + err);
             });
 
             node.on('input', function(msg) {
@@ -42,9 +42,9 @@ module.exports = function(RED) {
         conn.connect()
 		.then(go)
 		.catch(function (err) {
-			console.error('Error running Relay:', err.message);
+			console.error(node + ': could not go(). ',err.message);
 			process.exit(1);
 		});
     }
-    RED.nodes.registerType('Relay', RelayNode);
+    RED.nodes.registerType('relay', RelayNode);
 }

@@ -7,7 +7,9 @@
   "node-red": {
     "nodes": {
       "rfid": "rfid.js",
-      "lcd": "lcd.js"
+      "lcd": "lcd.js",
+      "frequency": "frequencycounter.js",
+      "relay": "relay.js"
     }
   },
   "optionalDependencies": {},
