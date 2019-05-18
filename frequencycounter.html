@@ -1,28 +1,28 @@
 <script type="text/javascript">
-    RED.nodes.registerType('lcd',{
-        category: 'output',
+    RED.nodes.registerType('frequency',{
+        category: 'input',
         color: '#a6bbcf',
         defaults: {
             name: {value:""},
             sensor_update_rate: {value:""},
             message_update_rate: {value:""}
         },
-        inputs:1,
-        outputs:0,
+        inputs:0,
+        outputs:1,
         icon: "icons/phidgets_logo.png",
         label: function() {
-            return this.name||"lcd";
+            return this.name||"frequency";
         }
     });
 </script>
 
-<script type="text/x-red" data-template-name="lcd">
+<script type="text/x-red" data-template-name="frequency">
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="lcd">
-    <p>Renders input unto a Phidgets LCD device.</p>
+<script type="text/x-red" data-help-name="frequency">
+    <p>Reads from a Phidgets frequency counter device.</p>
 </script>

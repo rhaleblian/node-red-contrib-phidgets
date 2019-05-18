@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    RED.nodes.registerType('lcd',{
+    RED.nodes.registerType('relay',{
         category: 'output',
         color: '#a6bbcf',
         defaults: {
@@ -9,20 +9,20 @@
         },
         inputs:1,
         outputs:0,
-        icon: "icons/phidgets_logo.png",
+        icon: "phidgets_logo.png",
         label: function() {
-            return this.name||"lcd";
+            return this.name||"relay";
         }
     });
 </script>
 
-<script type="text/x-red" data-template-name="lcd">
+<script type="text/x-red" data-template-name="relay">
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="lcd">
-    <p>Renders input unto a Phidgets LCD device.</p>
+<script type="text/x-red" data-help-name="relay">
+    <p>Triggers a Phidgets relay device.</p>
 </script>
